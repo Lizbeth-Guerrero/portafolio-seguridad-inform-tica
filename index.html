@@ -3,90 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio de Evidencias - Seguridad Informática</title>
-    <!-- CSS de Bootstrap para un diseño moderno -->
+    <title>Portafolio de Evidencias - Estilo Cyberpunk</title>
+    <!-- CSS de Bootstrap para estructura rápida -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0b0f19; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .hero { padding: 80px 0; background: linear-gradient(180deg, #0f172a 0%, #0b0f19 100%); border-bottom: 1px solid #1e293b; }
-        .hero h1 { font-weight: 700; color: #38bdf8; }
-        .card-custom { background-color: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #ffffff; transition: transform 0.2s; }
-        .card-custom:hover { transform: translateY(-5px); border-color: #38bdf8; }
-        .badge-term { background-color: #0284c7; color: white; }
-        nav { background-color: #0f172a; border-bottom: 1px solid #1e293b; }
-        footer { background-color: #0f172a; border-top: 1px solid #1e293b; margin-top: 50px; }
+        /* --- ESTILOS GENERALES Y FONDO --- */
+        body {
+            background-color: #050509; /* Fondo casi negro */
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace; /* Tipografía estilo terminal */
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Patrón de cuadrícula de fondo */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(32, 255, 255, 0.05) 25%, rgba(32, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(32, 255, 255, 0.05) 75%, rgba(32, 255, 255, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(32, 255, 255, 0.05) 25%, rgba(32, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(32, 255, 255, 0.05) 75%, rgba(32, 255, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        /* --- MENÚ DE NAVEGACIÓN HACKER --- */
+        nav {
+            background-color: rgba(10, 10, 20, 0.9);
+            border-bottom: 2px solid #00ffff; /* Borde neón cian */
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+        .navbar-brand, .nav-link {
+            color: #00ffff !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px #00ffff;
+        }
+        .nav-link:hover {
+            color: #ff00ff !important; /* Rosa neón al pasar el mouse */
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        /* --- SECCIÓN HERO (ENCABEZADO) --- */
+        .hero {
+            padding: 100px 0;
+            position: relative;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px #ff00ff; /* Resplandor rosa */
+        }
+        .hero-title span {
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+
+        /* Paneles de Información (Datos del estudiante) */
+        .info-panel {
+            background: rgba(20, 20, 35, 0.8);
+            border: 1px solid #333;
+            border-left: 4px solid #ff00ff; /* Acento rosa */
+            padding: 15px;
+            margin-bottom: 10px;
+            color: #a0a0b0;
+        }
+        .info-panel strong { color: #ffffff; }
+
+        /* --- TARJETAS DE ACTIVIDADES (NEÓN CARD) --- */
+        .card-cyber {
+            background-color: rgba(15, 15, 30, 0.9);
+            border: 2px solid #00ffff;
+            border-radius: 0; /* Bordes rectos */
+            color: #ffffff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+        
+        /* Efecto de brillo al pasar el mouse */
+        .card-cyber:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            border-color: #ff00ff; /* Cambia a rosa */
+        }
+
+        .card-cyber .card-title {
+            color: #00ffff;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px #00ffff;
+        }
+        
+        .card-cyber .card-text {
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        /* Botón estilo neón */
+        .btn-cyber {
+            background: transparent;
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            border-radius: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+        .btn-cyber:hover {
+            background-color: #00ffff;
+            color: #000;
+            box-shadow: 0 0 15px #00ffff;
+        }
+
+        /* Tarjeta de "Próximamente" (Bloqueada) */
+        .card-locked {
+            border: 2px solid #555;
+            opacity: 0.6;
+        }
+        .card-locked .card-title { color: #888; text-shadow: none; }
+        .locked-icon {
+            font-size: 2rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* --- STACK TÉCNICO --- */
+        .tech-icon {
+            font-size: 1.2rem;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+        }
+
+        /* --- PIE DE PÁGINA --- */
+        footer {
+            background-color: #0a0a14;
+            border-top: 2px solid #ff00ff;
+            color: #888;
+            padding: 20px 0;
+            margin-top: 50px;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+        }
     </style>
 </head>
 <body>
 
-    <!-- Menú de navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <!-- Menú de Navegación -->
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand text-info fw-bold" href="#">🔒 Portafolio CNO</a>
+            <a class="navbar-brand fw-bold" href="#">_SYS_CNOV_v1.0_></a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#parcial1">Parcial 1</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#parcial2">Parcial 2</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#parcial3">Parcial 3</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#inicio">::Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#parcial1">::P1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#proyectos">::Proyectos</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Encabezado / Inicio -->
-    <section id="inicio" class="hero text-center text-lg-start">
+    <!-- Sección Hero (Inicio) -->
+    <section id="inicio" class="hero">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <span class="badge badge-term mb-2">Seguridad Informática</span>
-                    <h1 class="display-4">Portafolio de <span>Evidencias</span></h1>
-                    <p class="lead text-secondary">
-                        Compendio integral de actividades, prácticas y proyectos desarrollados a lo largo del curso.
-                    </p>
-                    <div class="mt-4 p-3 bg-dark rounded border border-secondary">
-                        <p class="mb-1"><strong>Estudiante:</strong> [Tu Nombre Completo]</p>
-                        <p class="mb-1"><strong>Materia:</strong> Seguridad Informática</p>
-                        <p class="mb-0"><strong>Periodo:</strong> Enero – Junio 2026</p>
+                <div class="col-lg-7">
+                    <h1 class="hero-title">Portafolio de <br><span>Evidencias_</span></h1>
+                    <p class="lead text-secondary mt-3">Recopilación de actividades de Seguridad Informática. Acceso autorizado...</p>
+                    
+                    <div class="mt-4">
+                        <div class="info-panel"><strong>[ESTUDIANTE]</strong>: [Tu Nombre Completo]</div>
+                        <div class="info-panel"><strong>[ALIAS]</strong>: VshadowB</div>
+                        <div class="info-panel"><strong>[PERIODO]</strong>: Enero – Junio 2026</div>
+                    </div>
+                </div>
+                <!-- Simulación de Terminal (Opcional, si quieres decorarlo más) -->
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="p-3 bg-dark text-success rounded border border-secondary" style="font-size:0.8rem; opacity:0.8;">
+                        > Iniciando sesión... OK<br>
+                        > Cargando módulos de red... OK<br>
+                        > Analizando vulnerabilidades... [NINGUNA]<br>
+                        > vshadowb@cnov:~$_
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección de Actividades -->
+    <!-- Sección Parcial 1 -->
     <section id="parcial1" class="container my-5">
-        <h2 class="text-info mb-4">Parcial 1</h2>
+        <div class="row mb-4">
+            <div class="col">
+                <h2 class="text-info text-uppercase fw-bold" style="text-shadow: 0 0 10px #00ffff;">:: Actividades Parcial 1</h2>
+            </div>
+        </div>
+        
         <div class="row g-4">
             
-            <!-- Ejemplo de Tarjeta de Actividad -->
+            <!-- Tarjeta Actividad 1 -->
             <div class="col-md-6 col-lg-4">
-                <div class="card card-custom h-100 p-3">
-                    <div class="card-body">
-                        <h5 class="card-title text-info">Actividad 1</h5>
-                        <p class="card-text text-secondary">Análisis de ciberataque real y su impacto empresarial.</p>
-                        <a href="#" class="btn btn-sm btn-outline-info">Ver evidencia</a>
+                <div class="card card-cyber h-100 p-3">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Actividad 1</h5>
+                        <p class="card-text">Análisis de ciberataque real y su impacto empresarial (Caso PEMEX).</p>
+                        <div class="mt-auto">
+                            <a href="#" class="btn btn-cyber btn-sm w-100">> Ver evidencia</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Tarjeta Actividad 2 -->
             <div class="col-md-6 col-lg-4">
-                <div class="card card-custom h-100 p-3">
-                    <div class="card-body">
-                        <h5 class="card-title text-info">Actividad 2</h5>
-                        <p class="card-text text-secondary">Análisis de servicios de seguridad X.800 y RFC 4949.</p>
-                        <a href="#" class="btn btn-sm btn-outline-info">Ver evidencia</a>
+                <div class="card card-cyber h-100 p-3">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Actividad 2</h5>
+                        <p class="card-text">Análisis de servicios de seguridad X.800 y RFC 4949.</p>
+                        <div class="mt-auto">
+                            <a href="#" class="btn btn-cyber btn-sm w-100">> Ver evidencia</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Tarjeta Bloqueada (Próximamente) -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-cyber h-100 p-3 card-locked text-center">
+                    <div class="card-body d-flex flex-column justify-content-center">
+                        <div class="locked-icon">🔒</div>
+                        <h5 class="card-title">P2 / P3</h5>
+                        <p class="card-text">Contenido bloqueado. Próximamente.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sección Stack Técnico (Basado en la imagen) -->
+    <section class="container my-5">
+        <div class="row info-panel text-center rounded border border-info">
+            <div class="col">
+                <span class="tech-icon">[HTML5]</span>
+                <span class="tech-icon ms-3">[CSS3]</span>
+                <span class="tech-icon ms-3">[Bootstrap]</span>
+                <span class="tech-icon ms-3">[JavaScript]</span>
+                <span class="tech-icon ms-3">[Git/GitHub]</span>
+            </div>
         </div>
     </section>
 
     <!-- Pie de página -->
-    <footer class="text-center py-4 text-secondary">
-        <p class="mb-0">[Tu Nombre Completo] — Universidad Politécnica de San Luis Potosí</p>
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-0 fw-bold" style="text-shadow: 0 0 5px #ff00ff;">[Tu Nombre Completo] // Universidad Politécnica de San Luis Potosí</p>
+            <small>SYS_STATUS: OPERATIONAL // 2026</small>
+        </div>
     </footer>
 
 </body>
