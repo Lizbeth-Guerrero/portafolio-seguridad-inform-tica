@@ -1,0 +1,29 @@
+[
+  {
+    "id": "01",
+    "titulo": "Análisis Ciberataque Banco de Chile",
+    "categoria": "Parcial I",
+    "estado": "COMPLETADO",
+    "descripcion": "Análisis técnico, económico y estratégico sobre el malware KillDisk.",
+    "tags": ["MALWARE", "SWIFT", "AUDITORÍA"],
+    "pdf": "Equipo2-act01.pdf"
+  },
+    {
+    "id": "02",
+    "titulo": "Aquí empieza mi portafolio",
+    "categoria": "Parcial I",
+    "estado": "COMPLETADO",
+    "descripcion": "Diseño, implementación y publicación de la portada técnica del portafolio digital con certificado HTTPS/SSL activo en GitHub Pages.",
+    "tags": ["HTML5", "CSS3", "GIT", "HTTPS"]
+  }
+  ,
+    {
+    "id": "3",
+    "titulo": "No presiones Esc... todavía.",
+    "categoria": "Parcial I",
+    "estado": "COMPLETADO",
+    "descripcion": "Diseño, implementación y publicación de la portada técnica del portafolio digital con certificado HTTPS/SSL activo en GitHub Pages.",
+    "tags": ["HTML5", "CSS3", "GIT", "HTTPS"],
+    "pdf": ""
+  } 
+]
