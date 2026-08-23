@@ -544,6 +544,29 @@
         max-width: 1200px;
       }
     }
+  // Cargar actividades automáticamente
+fetch('actividades.json')
+  .then(response => response.json())
+  .then(data => {
+    const contenedor = document.getElementById('evidencias-container');
+    contenedor.innerHTML = data.map(act => `
+      <div class="evidencia-item">
+        <div class="evidencia-header">
+          <span class="badge">${act.categoria} - ${act.id}</span>
+          <span class="badge-status">${act.estado}</span>
+        </div>
+        <h3>${act.titulo}</h3>
+        <p>${act.descripcion}</p>
+        <div class="tech-tags">
+          ${act.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-secondary" onclick="previewPDF('${act.pdf}', '${act.titulo}')">Ver</button>
+          <a href="${act.pdf}" download class="btn">Descargar</a>
+        </div>
+      </div>
+    `).join('');
+  });
   </style>
 </head>
 
