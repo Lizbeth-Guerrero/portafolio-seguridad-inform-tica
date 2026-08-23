@@ -15,11 +15,19 @@
     "estado": "COMPLETADO",
     "descripcion": "Diseño, implementación y publicación de la portada técnica del portafolio digital con certificado HTTPS/SSL activo en GitHub Pages.",
     "tags": ["HTML5", "CSS3", "GIT", "HTTPS"]
-  }
-  ,
+  },
     {
     "id": "3",
     "titulo": "No presiones Esc... todavía.",
+    "categoria": "Parcial I",
+    "estado": "COMPLETADO",
+    "descripcion": "Diseño, implementación y publicación de la portada técnica del portafolio digital con certificado HTTPS/SSL activo en GitHub Pages.",
+    "tags": ["HTML5", "CSS3", "GIT", "HTTPS"],
+    "pdf": ""
+  },
+   {
+    "id": "4",
+    "titulo": "Prueba ",
     "categoria": "Parcial I",
     "estado": "COMPLETADO",
     "descripcion": "Diseño, implementación y publicación de la portada técnica del portafolio digital con certificado HTTPS/SSL activo en GitHub Pages.",
