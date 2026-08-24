@@ -256,6 +256,31 @@
     @media(max-width: 600px) {
       .btn { width: 100%; margin-right: 0; }
     }
+    /* ESTILOS PARA IMÁGENES Y CAPTURAS */
+.img-container {
+  margin: 1.2rem 0;
+  border: 1px solid var(--neon-magenta);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 8px;
+  box-shadow: 0 0 15px rgba(255, 0, 85, 0.2);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.img-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--goth-purple);
+  filter: contrast(1.05) brightness(0.95); /* Ajuste sutil para encajar con el tema oscuro */
+}
+
+.img-container figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--neon-cyan);
+  text-align: center;
+  padding-top: 8px;
+}
   </style>
 </head>
 <body>
@@ -286,10 +311,6 @@
         <h2><i class="fa-solid fa-flask"></i> 02 // Entorno de Laboratorio</h2>
         <div class="grid" style="margin-top: 1rem;">
           <div class="card" style="background: rgba(0,0,0,0.5);">
-            <h3><i class="fa-solid fa-shield-virus"></i> Aislamiento</h3>
-            <p>Ejercicio realizado en una red/VM de laboratorio aislada, sin conexión a equipos ajenos al ejercicio.</p>
-          </div>
-          <div class="card" style="background: rgba(0,0,0,0.5);">
             <h3><i class="fa-solid fa-code"></i> Código Base</h3>
             <p>Listener de teclado con la librería <code>pynput</code> (<code>on_press</code> / <code>on_release</code>) provisto en clase.</p>
           </div>
@@ -310,7 +331,11 @@
         <p>Cada evento se registra en un archivo local (<code>keylog.txt</code>) usando el modo de apertura <code>"a"</code> (append) con la construcción <code>with open(...) as f</code>. El archivo se abre, se escribe una línea y se cierra en cada evento individual, evitando la pérdida de información ante cierres abruptos.</p>
         <pre><code>with open(LOG_FILE, "a", encoding="utf-8") as f:
     f.write(log_entry)</code></pre>
-        <div class="placeholder"><i class="fa-solid fa-image"></i> [Captura: Contenido del archivo keylog.txt con eventos guardados]</div>
+       <!-- <div class="placeholder"><i class="fa-solid fa-image"></i> [Captura: Contenido del archivo keylog.txt con eventos guardados]</div> -->
+        <figure class="img-container">
+  <img src="keylog-eventos.png" alt="Captura de eventos en keylog.txt" loading="lazy">
+  <figcaption><i class="fa-solid fa-camera"></i> Figura 1: Contenido del archivo keylog.txt con eventos guardados</figcaption>
+</figure>
 
         <h3>2. Asociación Temporal (Timestamps)</h3>
         <p>La marca de tiempo se obtiene con <code>datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]</code>, recortando los microsegundos a milisegundos. Un contador global asigna además un identificador secuencial a cada evento (<code>evento_001</code>, <code>evento_002</code>…), permitiendo reconstruir el orden exacto.</p>
