@@ -342,7 +342,7 @@
         <pre><code>2026-08-18 12:15:04.215 | PRESS | evento_001</code></pre>
         <!-- <div class="placeholder"><i class="fa-solid fa-image"></i> [Captura: Log con timestamps y contador de eventos]</div> -->
         <figure class="img-container">
-  <img src="keylog-eventos.PNG" alt="Captura de eventos en keylog.txt" style="max-width: 450px;>
+  <img src="keylog-eventos.PNG" alt="Captura Log con timestamps y contador de eventos" style="max-width: 450px;>
   <figcaption><i class="fa-solid fa-camera"></i> Figura 2: Log con timestamps y contador de eventos</figcaption>
 </figure>
 
@@ -355,20 +355,17 @@
       <div class="card">
         <h2><i class="fa-solid fa-camera-retro"></i> 04 // Evidencias de Ejecución</h2>
         <div class="grid" style="margin-top: 1rem;">
-          <!--<div class="placeholder"><i class="fa-solid fa-terminal"></i> [Captura: Ejecución del programa en consola]</div>
-          <div class="placeholder"><i class="fa-solid fa-file-lines"></i> [Captura: Log con eventos guardados]</div>
-          <div class="placeholder"><i class="fa-solid fa-clock"></i> [Captura: Log con timestamps detallados]</div> -->
           <figure class="img-container">
-  <img src="keylog-eventos.PNG" alt="Captura de eventos en keylog.txt" style="max-width: 450px;>
-  <figcaption><i class="fa-solid fa-camera"></i> Figura 1: Contenido del archivo keylog.txt con eventos guardados</figcaption>
+  <img src="código.PNG" alt="Captura: Programa" style="max-width: 450px;>
+  <figcaption><i class="fa-solid fa-camera"></i> Figura 3: Programa</figcaption>
 </figure>
           <figure class="img-container">
-  <img src="keylog-eventos.PNG" alt="Captura de eventos en keylog.txt" style="max-width: 450px;>
-  <figcaption><i class="fa-solid fa-camera"></i> Figura 1: Contenido del archivo keylog.txt con eventos guardados</figcaption>
+  <img src="eventos_guardados.PNG" alt="Captura: Log con eventos guardados" style="max-width: 450px;>
+  <figcaption><i class="fa-solid fa-camera"></i> Figura 4: Log con eventos guardados</figcaption>
 </figure>
           <figure class="img-container">
-  <img src="keylog-eventos.PNG" alt="Captura de eventos en keylog.txt" style="max-width: 450px;>
-  <figcaption><i class="fa-solid fa-camera"></i> Figura 1: Contenido del archivo keylog.txt con eventos guardados</figcaption>
+  <img src="timestamps.PNG" alt="Captura: Log con timestamps detallados" style="max-width: 450px;>
+  <figcaption><i class="fa-solid fa-camera"></i> Figura 5: Log con timestamps detallados</figcaption>
 </figure>
         </div>
       </div>
@@ -391,7 +388,10 @@
       <div class="card">
         <h2><i class="fa-solid fa-brain"></i> 06 // Conclusiones Técnico-Éticas</h2>
         <div class="placeholder" style="text-align: left; justify-content: flex-start;">
-          <p><i class="fa-solid fa-pen-clip"></i> Reflexión sobre lo aprendido, controles defensivos aplicables (EDRs, Key-scramblers, análisis de conducta) e implicaciones éticas y legales de esta técnica fuera de un entorno autorizado.</p>
+          <li><b>Mecanismo de bajo nivel:</b> "Uso de la librería pynput para interactuar con los ganchos de eventos del sistema operativo y capturar interrupciones de hardware vía funciones callback."</li>
+          <li><b>Reconstrucción forense:</b> "La incorporación de marcas de tiempo precisas (milisegundos) y secuencias de evento (evento_00X) permite correlacionar el orden de entrada y analizar patrones de cadencia de tecleo (*keystroke dynamics*)."</li>
+          <li><b>Privacidad y Riesgo:</b> "La interceptación de entradas sin consentimiento expone información altamente confidencial como credenciales, chats y datos bancarios."</li>
+          <li><b>Uso Ético:</b>"Su desarrollo se restringe exclusivamente al ámbito educativo, la investigación defensiva y pruebas de penetración (*pentesting*) con un acuerdo de alcance formalmente firmado."</li>
         </div>
       </div>
     </section>
@@ -399,7 +399,7 @@
   </main>
 
   <footer>
-    <p>Parcial I: Fundamentos de Ciberseguridad · Mtro. Servando López Contreras · CNO IV — Seguridad Informática</p>
+    <p>Parcial I· Mtro. Servando López Contreras · CNO IV — Seguridad Informática</p>
     <p style="margin-top: 5px; color: var(--neon-cyan);">&copy; 2026 Lizbeth Guerrero Hurtado | UPSLP</p>
   </footer>
 
