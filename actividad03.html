@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad 03 — No presiones Esc… todavía | Portafolio CNO IV</title>
+<style>
+  :root{
+    --bg:#0A0E27;
+    --bg2:#10163A;
+    --card:#141A3D;
+    --cyan:#00F0FF;
+    --magenta:#FF2E9A;
+    --text:#E8ECF7;
+    --muted:#8A93B8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI', Arial, sans-serif;
+    line-height:1.6;
+  }
+  header{
+    padding:3rem 1.5rem 2rem;
+    text-align:center;
+    border-bottom:1px solid rgba(138,147,184,0.2);
+  }
+  header .kicker{
+    color:var(--magenta);
+    letter-spacing:3px;
+    font-size:0.85rem;
+    font-weight:700;
+  }
+  header h1{
+    color:var(--cyan);
+    font-size:clamp(1.8rem,5vw,2.8rem);
+    margin:0.6rem 0;
+  }
+  header p{
+    color:var(--muted);
+    max-width:700px;
+    margin:0 auto;
+  }
+  nav.back{
+    display:block;
+    text-align:center;
+    margin-top:1rem;
+  }
+  nav.back a{
+    color:var(--cyan);
+    text-decoration:none;
+    font-size:0.9rem;
+  }
+  main{
+    max-width:960px;
+    margin:0 auto;
+    padding:2.5rem 1.5rem 4rem;
+  }
+  section{
+    margin-bottom:2.5rem;
+  }
+  section h2{
+    color:var(--cyan);
+    font-size:1.4rem;
+    margin-bottom:0.8rem;
+  }
+  section h3{
+    color:var(--magenta);
+    font-size:1.05rem;
+    margin:1rem 0 0.4rem;
+  }
+  .card{
+    background:var(--card);
+    border-radius:10px;
+    padding:1.4rem 1.6rem;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1rem;
+  }
+  @media(max-width:700px){
+    .grid{grid-template-columns:1fr;}
+  }
+  .placeholder{
+    border:2px dashed var(--muted);
+    border-radius:10px;
+    min-height:180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--muted);
+    font-style:italic;
+    font-size:0.9rem;
+    padding:1rem;
+  }
+  ul{padding-left:1.2rem;}
+  li{margin-bottom:0.4rem;}
+  code, pre{
+    font-family:'Consolas', monospace;
+  }
+  pre{
+    background:var(--bg2);
+    padding:1rem 1.2rem;
+    border-radius:8px;
+    overflow-x:auto;
+    color:var(--cyan);
+    font-size:0.9rem;
+  }
+  .btn{
+    display:inline-block;
+    margin-top:0.8rem;
+    padding:0.6rem 1.2rem;
+    background:transparent;
+    border:1px solid var(--cyan);
+    color:var(--cyan);
+    border-radius:6px;
+    text-decoration:none;
+    font-size:0.9rem;
+  }
+  .btn:hover{
+    background:var(--cyan);
+    color:var(--bg);
+  }
+  footer{
+    text-align:center;
+    padding:2rem;
+    color:var(--muted);
+    font-size:0.85rem;
+    border-top:1px solid rgba(138,147,184,0.2);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">ACTIVIDAD 03 · PARCIAL I</div>
+  <h1>No presiones Esc… todavía</h1>
+  <p>Implementación y análisis de un programa de event hooks para captura de teclado, con persistencia, asociación temporal y envío de telemetría en un entorno de laboratorio controlado.</p>
+  <nav class="back"><a href="index.html">&larr; Volver al portafolio</a></nav>
+</header>
+
+<main>
+
+  <section>
+    <h2>Objetivo</h2>
+    <div class="card">
+      <p>Implementar y documentar, en un entorno de laboratorio controlado, un programa basado en event hooks y callbacks que permita registrar eventos de teclado, asociarlos temporalmente y transmitir telemetría hacia un receptor de laboratorio, con el fin de comprender el funcionamiento técnico de una técnica de captura de entrada y reconocer sus implicaciones dentro de la ciberseguridad.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Entorno de laboratorio</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Aislamiento</h3>
+        <p>Ejercicio realizado en una red/VM de laboratorio, sin conexión a equipos ajenos al ejercicio.</p>
+      </div>
+      <div class="card">
+        <h3>Código base</h3>
+        <p>Listener de teclado con la librería <code>pynput</code> (<code>on_press</code> / <code>on_release</code>) provisto en clase.</p>
+      </div>
+      <div class="card">
+        <h3>Enfoque</h3>
+        <p>Comprensión técnica de la captura de entrada y de los controles defensivos que la detectan o mitigan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Implementación</h2>
+
+    <h3>1. Persistencia del registro</h3>
+    <p>Cada evento se registra en un archivo local (<code>keylog.txt</code>) usando el modo de apertura <code>"a"</code> (append) con la construcción <code>with open(...) as f</code>. El archivo se abre, se escribe una línea y se cierra en cada evento individual, de modo que si el programa se interrumpe abruptamente, los eventos ya procesados no se pierden.</p>
+    <pre>with open(LOG_FILE, "a", encoding="utf-8") as f:
+    f.write(log_entry)</pre>
+    <div class="placeholder">Captura: contenido del archivo keylog.txt con eventos guardados</div>
+
+    <h3>2. Asociación temporal</h3>
+    <p>La marca de tiempo se obtiene con <code>datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]</code>, recortando los microsegundos a milisegundos. Un contador global asigna además un identificador secuencial a cada evento (<code>evento_001</code>, <code>evento_002</code>…), lo que permite reconstruir el orden exacto en que ocurrieron.</p>
+    <pre>2026-08-18 12:15:04.215 | PRESS | evento_001</pre>
+    <div class="placeholder">Captura: log con timestamps y contador de eventos</div>
+
+    <div class="card" style="margin-top:1rem;">
+      <p><strong>Nota sobre el paso 3 (envío de información / C&amp;C a Kali Linux):</strong> el profesor indicó que esta parte no se llevará a cabo en esta ocasión. El valor de dicho criterio se suma al criterio de <em>portafolio digital</em>.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Evidencias</h2>
+    <div class="grid">
+      <div class="placeholder">Captura: ejecución del programa</div>
+      <div class="placeholder">Captura: log con eventos guardados</div>
+      <div class="placeholder">Captura: log con timestamps</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Código fuente e informe</h2>
+    <div class="card">
+      <p>Consulta el código fuente completo y el informe en formato de presentación de esta actividad:</p>
+      <!-- TODO: reemplaza los href por los enlaces reales -->
+      <a class="btn" href="#" target="_blank">Ver código en GitHub</a>
+      <a class="btn" href="#" target="_blank">Descargar informe (PPTX/PDF)</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Conclusiones</h2>
+    <div class="placeholder">Reflexión sobre lo aprendido, controles defensivos aplicables e implicaciones éticas y legales de esta técnica fuera de un entorno autorizado.</div>
+  </section>
+
+</main>
+
+<footer>
+  Parcial I: Fundamentos de Ciberseguridad · Mtro. Servando López Contreras · CNO IV — Seguridad Informática
+</footer>
+
+</body>
+</html>
