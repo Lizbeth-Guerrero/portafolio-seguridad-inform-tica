@@ -340,11 +340,13 @@
         <h3>2. Asociación Temporal (Timestamps)</h3>
         <p>La marca de tiempo se obtiene con <code>datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]</code>, recortando los microsegundos a milisegundos. Un contador global asigna además un identificador secuencial a cada evento (<code>evento_001</code>, <code>evento_002</code>…), permitiendo reconstruir el orden exacto.</p>
         <pre><code>2026-08-18 12:15:04.215 | PRESS | evento_001</code></pre>
-        <div class="placeholder"><i class="fa-solid fa-image"></i> [Captura: Log con timestamps y contador de eventos]</div>
+        <!-- <div class="placeholder"><i class="fa-solid fa-image"></i> [Captura: Log con timestamps y contador de eventos]</div> -->
+        <figure class="img-container">
+  <img src="keylog-eventos.png" alt="Captura de eventos en keylog.txt" loading="lazy">
+  <figcaption><i class="fa-solid fa-camera"></i> Figura 2: Log con timestamps y contador de eventos</figcaption>
+</figure>
 
-        <div class="note-box">
-          <p><strong><i class="fa-solid fa-circle-info"></i> Nota sobre el envío de información (C&amp;C a Kali Linux):</i></strong> El docente indicó que esta fase no se ejecutará en esta ocasión. La ponderación de este criterio se integra al <em>portafolio digital</em>.</p>
-        </div>
+        
       </div>
     </section>
 
@@ -353,9 +355,21 @@
       <div class="card">
         <h2><i class="fa-solid fa-camera-retro"></i> 04 // Evidencias de Ejecución</h2>
         <div class="grid" style="margin-top: 1rem;">
-          <div class="placeholder"><i class="fa-solid fa-terminal"></i> [Captura: Ejecución del programa en consola]</div>
+          <!--<div class="placeholder"><i class="fa-solid fa-terminal"></i> [Captura: Ejecución del programa en consola]</div>
           <div class="placeholder"><i class="fa-solid fa-file-lines"></i> [Captura: Log con eventos guardados]</div>
-          <div class="placeholder"><i class="fa-solid fa-clock"></i> [Captura: Log con timestamps detallados]</div>
+          <div class="placeholder"><i class="fa-solid fa-clock"></i> [Captura: Log con timestamps detallados]</div> -->
+          <figure class="img-container">
+  <img src="keylog-eventos.png" alt="Captura de eventos en keylog.txt" loading="lazy">
+  <figcaption><i class="fa-solid fa-camera"></i> Figura 1: Contenido del archivo keylog.txt con eventos guardados</figcaption>
+</figure>
+          <figure class="img-container">
+  <img src="keylog-eventos.png" alt="Captura de eventos en keylog.txt" loading="lazy">
+  <figcaption><i class="fa-solid fa-camera"></i> Figura 1: Contenido del archivo keylog.txt con eventos guardados</figcaption>
+</figure>
+          <figure class="img-container">
+  <img src="keylog-eventos.png" alt="Captura de eventos en keylog.txt" loading="lazy">
+  <figcaption><i class="fa-solid fa-camera"></i> Figura 1: Contenido del archivo keylog.txt con eventos guardados</figcaption>
+</figure>
         </div>
       </div>
     </section>
