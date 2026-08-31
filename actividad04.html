@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 03 — No presiones Esc… todavía | Portafolio CNO IV</title>
+
+  <!-- FUENTES Y ICONOS -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cinzel:wght@600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-color: #030308;
+      --panel-bg: rgba(10, 8, 20, 0.90);
+      --neon-cyan: #00f3ff;
+      --neon-magenta: #ff0055;
+      --goth-purple: #8a2be2;
+      --text-main: #e0e0e0;
+      --font-cyber: 'Orbitron', sans-serif;
+      --font-goth: 'Cinzel', serif;
+      --font-mono: 'Share Tech Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-cyber);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
+      background-size: 100% 4px; z-index: 100; pointer-events: none;
+    }
+
+    header {
+      padding: 2rem 1.5rem 1.5rem;
+      border-bottom: 2px solid var(--neon-magenta);
+      box-shadow: 0 0 20px var(--neon-magenta);
+      background: rgba(5, 5, 12, 0.95);
+      backdrop-filter: blur(8px);
+      position: sticky; top: 0; z-index: 90; width: 100%;
+      text-align: center;
+    }
+
+    header .kicker {
+      color: var(--neon-magenta);
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+
+    header h1 {
+      font-family: var(--font-goth);
+      font-size: clamp(1.6rem, 4.5vw, 2.5rem);
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px var(--neon-magenta);
+      margin: 0.5rem 0;
+      word-break: break-word;
+    }
+
+    header p {
+      font-family: var(--font-mono);
+      color: var(--neon-cyan);
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: clamp(0.8rem, 2vw, 0.95rem);
+    }
+
+    nav.back { margin-top: 1.2rem; }
+
+    nav.back a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--goth-purple);
+      background: rgba(0,0,0,0.6);
+      transition: all 0.3s ease;
+      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav.back a:hover {
+      color: var(--neon-cyan);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px var(--neon-cyan);
+      background: rgba(0, 243, 255, 0.15);
+    }
+
+    main {
+      max-width: 1100px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      flex-grow: 1;
+    }
+
+    section { margin-bottom: 2rem; }
+
+    .card {
+      background: var(--panel-bg);
+      border: 1px solid var(--goth-purple);
+      padding: clamp(1.2rem, 3vw, 1.8rem);
+      clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+      transition: all 0.4s ease;
+      width: 100%;
+    }
+
+    .card:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.25);
+    }
+
+    h2 {
+      font-family: var(--font-goth);
+      color: var(--neon-cyan);
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      margin-bottom: 1rem;
+      border-bottom: 1px dashed var(--goth-purple);
+      padding-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3 {
+      font-family: var(--font-cyber);
+      color: var(--neon-magenta);
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    p, ul {
+      font-family: var(--font-mono);
+      font-size: clamp(0.82rem, 2.2vw, 0.92rem);
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    ul { padding-left: 1.2rem; }
+    li { margin-bottom: 0.4rem; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 1.2rem;
+    }
+
+    /* ESTILOS DE UNIFORMIDAD PARA IMÁGENES */
+    .img-container {
+      margin: 1rem 0;
+      border: 1px solid var(--neon-magenta);
+      background: rgba(0, 0, 0, 0.85);
+      padding: 10px;
+      box-shadow: 0 0 15px rgba(255, 0, 85, 0.2);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .img-container img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      border: 1px solid var(--goth-purple);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .img-container img:hover {
+      transform: scale(1.02);
+    }
+
+    .img-container figcaption {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--neon-cyan);
+      text-align: center;
+      padding-top: 8px;
+      width: 100%;
+    }
+
+    /* BOTONES */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.6rem 1.2rem;
+      background: transparent;
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-cyan);
+      font-family: var(--font-cyber);
+      font-size: clamp(0.7rem, 2vw, 0.8rem);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 0.8rem;
+      margin-right: 0.5rem;
+    }
+
+    .btn:hover {
+      background: var(--neon-cyan);
+      color: #000;
+      box-shadow: 0 0 15px var(--neon-cyan);
+    }
+
+    .btn-magenta {
+      color: var(--neon-magenta);
+      border-color: var(--neon-magenta);
+    }
+
+    .btn-magenta:hover {
+      background: var(--neon-magenta);
+      color: #000;
+      box-shadow: 0 0 15px var(--neon-magenta);
+    }
+
+    .btn-sm {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.7rem;
+      margin-top: 0.5rem;
+      margin-right: 0;
+      width: 100%;
+    }
+
+    /* FORMATO DE CONCLUSIONES EN PÁRRAFOS */
+    .conclusiones-box {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .conclusion-item {
+      background: rgba(10, 8, 20, 0.6);
+      border-left: 3px solid var(--neon-cyan);
+      padding: 1rem 1.2rem;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .conclusion-item p {
+      color: #e0e0e0;
+      font-family: var(--font-mono);
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+    }
+
+    .conclusion-item strong {
+      color: var(--neon-magenta);
+      font-family: var(--font-cyber);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* MODAL DE IMAGEN (LIGHTBOX) */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 200;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(3, 3, 8, 0.95);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 80vh;
+      border: 2px solid var(--neon-cyan);
+      box-shadow: 0 0 30px var(--neon-cyan);
+      object-fit: contain;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: var(--neon-magenta);
+      font-size: 2.5rem;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      transition: 0.3s;
+    }
+
+    .modal-close:hover {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 10px var(--neon-cyan);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.8rem 1rem;
+      margin-top: 2rem;
+      font-size: clamp(0.7rem, 2vw, 0.8rem);
+      color: #888;
+      border-top: 1px solid var(--goth-purple);
+      font-family: var(--font-mono);
+      width: 100%;
+      background: rgba(5, 5, 12, 0.95);
+    }
+
+    @media(max-width: 600px) {
+      .btn { width: 100%; margin-right: 0; }
+      .img-container img { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="kicker">// ACTIVIDAD 04 · PARCIAL I</div>
+    <h1>Una página demasiado convinecente</h1>
+    <p>Implementar y analizar, en un entorno de laboratorio controlado, una simulación de Ingeniería social mediante Social-Engineer Toolkit (SET), utilizando una página web ficticia para comprender el funcionamiento de una técnica de captura de información y reconocer los elementos que permiten identificar un intento de phishing.</p>
+    
+    <nav class="back">
+      <a href="index.html"><i class="fa-solid fa-arrow-left"></i> // VOLVER AL PORTAFOLIO</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 01 OBJETIVO -->
+    <section>
+      <div class="card">
+        <h2><i class="fa-solid fa-crosshairs"></i> 01 // Objetivo de la Práctica</h2>
+        <p>Implementar y analizar, en un entorno de laboratorio controlado, una simulación de Ingeniería social mediante Social-Engineer Toolkit (SET), utilizando una página web ficticia para comprender el funcionamiento de una técnica de captura de información y reconocer los elementos que permiten identificar un intento de phishing.</p>
+      </div>
+    </section>
+
+    <!-- 02 ENTORNO DE LABORATORIO -->
+    <section>
+      <div class="card">
+        <h2><i class="fa-solid fa-flask"></i> 02 // Entorno de Laboratorio</h2>
+        <div class="grid" style="margin-top: 1rem;">
+          <div class="card" style="background: rgba(0,0,0,0.5);">
+            <h3><i class="fa-solid fa-code"></i> Código Base</h3>
+            <p>Listener de teclado con la librería <code>pynput</code> (<code>on_press</code> / <code>on_release</code>) provisto en clase.</p>
+          </div>
+          <div class="card" style="background: rgba(0,0,0,0.5);">
+            <h3><i class="fa-solid fa-eye"></i> Enfoque Defensivo</h3>
+            <p>Comprensión técnica de la captura de entrada y de los controles defensivos que la detectan o mitigan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 IMPLEMENTACIÓN -->
+    <section>
+      <div class="card">
+        <h2><i class="fa-solid fa-gears"></i> 03 // Detalle de Implementación</h2>
+
+        <h3>1. Persistencia del Registro</h3>
+        <p>Cada evento se registra en un archivo local (<code>keylog.txt</code>) usando el modo de apertura <code>"a"</code> (append) con la construcción <code>with open(...) as f</code>. El archivo se abre, se escribe una línea y se cierra en cada evento individual, evitando la pérdida de información ante cierres abruptos.</p>
+        <pre><code>with open(LOG_FILE, "a", encoding="utf-8") as f:
+    f.write(log_entry)</code></pre>
+        
+        <figure class="img-container">
+          <img src="keylog-eventos.PNG" alt="Captura keylog.txt" onclick="openModal(this.src)">
+          <figcaption><i class="fa-solid fa-camera"></i> Figura 1: Registro de eventos en el archivo local keylog.txt</figcaption>
+          <button class="btn btn-sm" onclick="openModal('keylog-eventos.PNG')"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver amplia</button>
+        </figure>
+
+        <h3>2. Asociación Temporal (Timestamps)</h3>
+        <p>La marca de tiempo se obtiene con <code>datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]</code>, recortando los microsegundos a milisegundos. Un contador global asigna además un identificador secuencial a cada evento (<code>evento_001</code>, <code>evento_002</code>…), permitiendo reconstruir el orden exacto.</p>
+        <pre><code>2026-08-18 12:15:04.215 | PRESS | evento_001</code></pre>
+        
+        <figure class="img-container">
+          <img src="logs.PNG" alt="Captura Log con timestamps" onclick="openModal(this.src)">
+          <figcaption><i class="fa-solid fa-camera"></i> Figura 2: Log con timestamps y contador de eventos</figcaption>
+          <button class="btn btn-sm" onclick="openModal('logs.PNG')"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver amplia</button>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 04 EVIDENCIAS -->
+    <section>
+      <div class="card">
+        <h2><i class="fa-solid fa-camera-retro"></i> 04 // Evidencias de Ejecución</h2>
+        <div class="grid" style="margin-top: 1rem;">
+          
+          <figure class="img-container">
+            <img src="código.PNG" alt="Captura Programa" onclick="openModal(this.src)">
+            <figcaption><i class="fa-solid fa-camera"></i> Figura 3: Programa base</figcaption>
+            <button class="btn btn-sm" onclick="openModal('código.PNG')"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver amplia</button>
+          </figure>
+
+          <figure class="img-container">
+            <img src="eventos_guardados.PNG" alt="Captura Log con eventos guardados" onclick="openModal(this.src)">
+            <figcaption><i class="fa-solid fa-camera"></i> Figura 4: Eventos guardados</figcaption>
+            <button class="btn btn-sm" onclick="openModal('eventos_guardados.PNG')"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver amplia</button>
+          </figure>
+
+          <figure class="img-container">
+            <img src="timestamps.PNG" alt="Captura Timestamps detallados" onclick="openModal(this.src)">
+            <figcaption><i class="fa-solid fa-camera"></i> Figura 5: Timestamps detallados</figcaption>
+            <button class="btn btn-sm" onclick="openModal('timestamps.PNG')"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver amplia</button>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 CÓDIGO Y FUENTES -->
+    <section>
+      <div class="card">
+        <h2><i class="fa-solid fa-folder-open"></i> 05 // Código Fuente e Informe</h2>
+        <p>Consulta el código fuente completo e informe técnico generado para esta actividad:</p>
+        <div style="margin-top: 0.5rem;">
+          <a class="btn" href="actividad03.py" target="_blank"><i class="fa-brands fa-github"></i> Código en GitHub</a>
+          <a class="btn btn-magenta" href="https://drive.google.com/file/d/1q0kdlZ0arfCHNoCPqSPCPQQESciH9smj/view?usp=sharing" target="_blank"><i class="fa-solid fa-file-pdf"></i> Descargar Informe PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 CONCLUSIONES -->
+    <section>
+      <div class="card">
+        <h2><i class="fa-solid fa-brain"></i> 06 // Conclusiones Técnico-Éticas</h2>
+        <div class="conclusiones-box">
+          
+          <div class="conclusion-item">
+            <strong>Mecanismo de bajo nivel</strong>
+            <p>El uso de la librería <code>pynput</code> permite interactuar de manera directa con los ganchos de eventos (<em>event hooks</em>) del sistema operativo, logrando capturar las interrupciones de hardware mediante funciones tipo callback.</p>
+          </div>
+
+          <div class="conclusion-item">
+            <strong>Reconstrucción forense</strong>
+            <p>La incorporación de marcas de tiempo con precisión en milisegundos y secuencias numeradas (<code>evento_00X</code>) resulta fundamental para correlacionar el orden temporal de las entradas, permitiendo analizar patrones de cadencia de tecleo (<em>keystroke dynamics</em>).</p>
+          </div>
+
+          <div class="conclusion-item">
+            <strong>Privacidad y Riesgo</strong>
+            <p>La interceptación de datos de entrada sin el debido consentimiento de los usuarios expone información altamente confidencial, incluyendo credenciales de acceso, conversaciones privadas y datos financieros.</p>
+          </div>
+
+          <div class="conclusion-item">
+            <strong>Uso Ético</strong>
+            <p>El desarrollo e implementación de este tipo de herramientas debe restringirse exclusivamente al ámbito educativo, a la investigación defensiva y a pruebas de penetración (<em>pentesting</em>) bajo un acuerdo de alcance formalmente autorizado.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE VISUALIZACIÓN DE IMÁGENES -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
+  <footer>
+    <p>Parcial I · Mtro. Servando López Contreras · CNO IV — Seguridad Informática</p>
+    <p style="margin-top: 5px; color: var(--neon-cyan);">&copy; 2026 Lizbeth Guerrero Hurtado | UPSLP</p>
+  </footer>
+
+  <script>
+    function openModal(src) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modal.style.display = 'flex';
+      modalImg.src = src;
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
